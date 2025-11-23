@@ -1,0 +1,7 @@
+:root {
+    background-color: darkviolet;
+}
+
+button:hover {
+    cursor: pointer;
+}
