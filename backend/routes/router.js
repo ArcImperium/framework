@@ -17,7 +17,8 @@ router.post('/names', (req, res) => {
 
     const newName = {
         id: newNameId,
-        user: req.body.user
+        user: req.body.user,
+        pass: req.body.user
     }
 
     names.push(newName)

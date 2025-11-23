@@ -1,11 +1,31 @@
 import './Login.css'
 import {useState} from "react"
 
-function Login() {
+function Login(names, loggedIn, setLoggedIn) {
     const [create, setCreate] = useState(false)
 
     const [user, setUser] = useState(null)
     const [pass, setPass] = useState(null)
+
+    function loginAccount() {
+        const realUser = names.findIndex(list => list[1] === user)
+        const realPass = names[realUser][2]
+
+        if (pass === realPass) {
+            setLoggedIn(true)
+        }
+    }
+
+    async function createAccount() {
+        const res = await fetch("http://localhost:4000/names", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                user,
+                pass
+            })
+        })
+    }
 
     return(
         <>
@@ -22,8 +42,8 @@ function Login() {
             </div>
             {!create && (<h3 className="go-to-create" onClick={() => {setCreate(true)}}>CREATE AN ACCOUNT</h3>)}
             {create && (<h3 className="go-to-create" onClick={() => {setCreate(false)}}>BACK TO LOGIN</h3>)}
-            {!create && (<button className="log-btn">LOGIN</button>)}
-            {create && (<button className="log-btn">CREATE</button>)}
+            {!create && (<button className="log-btn" onClick={() => {loginAccount()}}>LOGIN</button>)}
+            {create && (<button className="log-btn" onClick={() => {createAccount()}}>CREATE</button>)}
         </div>
         </>
     )
