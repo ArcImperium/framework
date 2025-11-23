@@ -1,28 +1,36 @@
 import './Login.css'
 import {useState} from "react"
+import {useNavigate} from "react-router-dom"
 
-function Login({names, loggedIn, setLoggedIn, throwError}) {
+function Login({names, setLoggedIn, throwError}) {
     const [create, setCreate] = useState(false)
 
-    const [user, setUser] = useState(null)
-    const [pass, setPass] = useState(null)
+    const [user, setUser] = useState("")
+    const [pass, setPass] = useState("")
 
     const [showPass, setShowPass] = useState(false)
 
-    function loginAccount() {
-        const realUser = names.findIndex(list => list[1] === user)
-        const realPass = names[realUser][2]
+    const nav = useNavigate()
 
-        if (pass === realPass) {
-            setLoggedIn(true)
+    function loginAccount() {
+        const realUser = names.find(n => n.user === user)
+        
+        if (!realUser) {
+            throwError("Username or Password is incorrect")
+            return
+        }
+
+        if (pass === realUser.pass) {
+            setLoggedIn(realUser.id)
+            nav("/levels")
         }
         else {
-            throwError("Username or Password is incorrect")
+            throwError("Username of Password is incorrect")
         }
     }
 
     async function createAccount() {
-        const existUser = names.includes(user)
+        const existUser = names.some(n => n.user === user)
 
         if (!existUser) {
             const res = await fetch("http://localhost:4000/names", {

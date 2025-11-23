@@ -1,0 +1,38 @@
+.levels-v {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    width: 80%;
+    top: 10%;
+    left: 10%;
+
+    background-color: ivory;
+    border-radius: 50px;
+}
+
+.levels-h {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    height: 50%;
+    width: 100%;
+    left: 0;
+}   
+.level-h.a {
+    top: 0;
+}
+.levels-h.b {
+    top: 50%;
+}
+
+.level {
+    height: 80%;
+    width: 20%;
+    margin-left: 10%;
+    margin-top: 2.5%;
+
+    background-color: green;
+    border-radius: 15px;
+    color: wheat;
+}

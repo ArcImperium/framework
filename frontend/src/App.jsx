@@ -3,16 +3,17 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import './App.css'
 import Opening from './Opening.jsx'
 import Login from './Login.jsx'
+import Levels from './Levels.jsx'
 
 function App() {
   const [names, setNames] = useState([])
-  const [loggedIn, setLoggedIn] = useState(false)
+  const [loggedIn, setLoggedIn] = useState("")
   const [showError, setShowError] = useState(false)
   const [errorMessage, setErrorMessage] = useState("")
 
   useEffect(() => {
     fetch("http://localhost:4000/names")
-      .then(res => res.join())
+      .then(res => res.json())
       .then(data => setNames(data))
   }, [])
 
@@ -28,7 +29,8 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Opening/>}/>
-        <Route path="/login" element={<Login names={names} loggedIn={loggedIn} setLoggedIn={setLoggedIn} throwError={throwError}/>}/>
+        <Route path="/login" element={<Login names={names} setLoggedIn={setLoggedIn} throwError={throwError}/>}/>
+        <Route path="/levels" element={<Levels loggedIn={loggedIn}/>}/>
       </Routes>
       {showError && (<div className="error">
         <h1 className="err">Error</h1>
