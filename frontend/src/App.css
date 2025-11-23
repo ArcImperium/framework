@@ -14,12 +14,12 @@
 }
 
 .err {
-  font-size: 50px;
+  font-size: 80px;
   text-decoration: underline;
   text-align: center;
 }
 
 .err-mes {
   text-align: center;
-  font-size: 25px;
+  font-size: 40px;
 }

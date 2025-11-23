@@ -30,7 +30,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Opening/>}/>
         <Route path="/login" element={<Login names={names} setLoggedIn={setLoggedIn} throwError={throwError}/>}/>
-        <Route path="/levels" element={<Levels loggedIn={loggedIn}/>}/>
+        <Route path="/levels/:id" element={<Levels names={names} loggedIn={loggedIn}/>}/>
       </Routes>
       {showError && (<div className="error">
         <h1 className="err">Error</h1>

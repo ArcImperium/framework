@@ -32,7 +32,19 @@
     margin-left: 10%;
     margin-top: 2.5%;
 
-    background-color: green;
+    background-color: darkgreen;
     border-radius: 15px;
     color: wheat;
+    text-align: center;
+}
+.level.not {
+    background-color: mediumseagreen;
+}
+
+.lvl-title {
+    font-size: 40px;
+}
+
+.lvl-completed {
+    font-size: 25px;
 }

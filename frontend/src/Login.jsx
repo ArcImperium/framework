@@ -22,10 +22,10 @@ function Login({names, setLoggedIn, throwError}) {
 
         if (pass === realUser.pass) {
             setLoggedIn(realUser.id)
-            nav("/levels")
+            nav(`/levels/${realUser.id}`)
         }
         else {
-            throwError("Username of Password is incorrect")
+            throwError("Username or Password is incorrect")
         }
     }
 
@@ -42,6 +42,9 @@ function Login({names, setLoggedIn, throwError}) {
                 }) 
             })
             setCreate(false)
+        }
+        else {
+            throwError("Username already exists")
         }
     }
 

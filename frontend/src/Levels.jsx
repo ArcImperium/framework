@@ -1,10 +1,13 @@
 import './Levels.css'
 import {useState} from "react"
 
-function Levels() {
+function Levels({names, loggedIn}) {
     const [lvlPg, setLvlPg] = useState(0)
 
-    const levels = [true, true, false, false, true, true, false, false, true, true]
+    const user = names.find(n => n.id === loggedIn)
+    const levels = user ? user.lvl : []
+
+    console.log(levels)
 
     function getLevels() {
         const giveLevels =[]
@@ -12,25 +15,33 @@ function Levels() {
         const giveLevelsB = []
 
         const lvlPgA = lvlPg * 6
-        const lvlPgB = lvlPg * 6
+        const lvlPgB = lvlPg * 6 + 3
 
-        for (l = 0; l < 3; l++) {
+        for (let i = 0; i < 3; i++) {
+            const completed = levels[lvlPgA + i] === true
+            const lvlMes = completed ? "Completed" : "Not Completed"
+
             giveLevelsA.push(
-                <div className="level">
-                    <h1 className="lvl-title">Level {lvlPgA + l + 1}</h1>
+                <div className={`level ${completed ? "" : "not"}`} key={"A" + lvlPgA + i}>
+                    <h1 className="lvl-title">Level {lvlPgA + i + 1}</h1>
+                    <h2 className="lvl-completed">{lvlMes}</h2>
                 </div>
             )
         }
-        for (l = 0; l < 3; l++) {
+        for (let i = 0; i < 3; i++) {
+            const completed = levels[lvlPgB + i] === true
+            const lvlMes = completed ? "Completed" : "Not Completed"
+
             giveLevelsB.push(
-                <div className="level">
-                    <h1 className="lvl-title">Level {lvlPgB + l + 1}</h1>
+                <div className={`level ${completed ? "" : "not"}`} key={"B" + lvlPgB + i}>
+                    <h1 className="lvl-title">Level {lvlPgB + i + 1}</h1>
+                    <h2 className="lvl-completed">{lvlMes}</h2>
                 </div>
             )
         }
 
         giveLevels.push(
-            <div className="levels-v">
+            <div className="levels-v" key={`lvlPg-${lvlPg}`}>
                 <div className="levels-h a">
                     {giveLevelsA}
                 </div>
