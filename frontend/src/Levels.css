@@ -27,6 +27,7 @@
 }
 
 .level {
+    position: relative;
     height: 80%;
     width: 20%;
     margin-left: 10%;
@@ -44,6 +45,7 @@
 }
 .level:hover {
     transform: scale(1.05);
+    cursor: grab;
 }
 
 .lvl-title {
@@ -75,4 +77,11 @@
 }
 .next-pg:hover {
     transform: scale(1.1);
+}
+
+.construction {
+    position: absolute;
+    width: 100%;
+    top: 20%;
+    left: 0;
 }
