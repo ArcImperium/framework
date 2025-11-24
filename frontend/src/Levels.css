@@ -36,9 +36,14 @@
     border-radius: 15px;
     color: wheat;
     text-align: center;
+
+    transition: transform 0.5s ease;
 }
 .level.not {
     background-color: mediumseagreen;
+}
+.level:hover {
+    transform: scale(1.05);
 }
 
 .lvl-title {
@@ -47,4 +52,27 @@
 
 .lvl-completed {
     font-size: 25px;
+}
+
+.next-pg {
+    position: fixed;
+    width: 5%;
+    aspect-ratio: 1/1;
+    top: 45%;
+
+    border-radius: 50%;
+    background-color: ivory;
+    border: transparent;
+    font-size: 25px;
+
+    transition: transform 0.5s ease;
+}
+.next-pg.r {
+    right: 2.5%;
+}
+.next-pg.l {
+    left: 2.5%
+}
+.next-pg:hover {
+    transform: scale(1.1);
 }

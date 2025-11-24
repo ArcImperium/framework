@@ -1,6 +1,7 @@
 import './Levels.css'
 import {useState} from "react"
 import {useParams} from "react-router-dom"
+import Play from './Play.jsx'
 
 function Levels({names, loggedIn, setLoggedIn}) {
     const {id} = useParams()
@@ -62,6 +63,8 @@ function Levels({names, loggedIn, setLoggedIn}) {
     return(
         <>
         {getLevels()}
+        {(lvlPg < Math.floor(levels / 6)) && (<button className="next-pg r" onClick={() => {setLvlPg(prev => prev + 1)}}>→</button>)}
+        {(lvlPg > 0) && (<button className="next-pg l" onClick={() => {setLvlPg(prev => prev - 1)}}>←</button>)}
         </>
     )
 }
