@@ -1,5 +1,6 @@
 import './Play.css'
 import {useState, useEffect} from "react"
+import FrameworkTransparent from './assets/framework_laptop_transparent.png'
 
 function Play({playing, setPlaying}) {
     const [grid, setGrid] = useState([])
@@ -50,6 +51,8 @@ function Play({playing, setPlaying}) {
 
     return(
         <>
+        <img src={FrameworkTransparent} className="t-fw"/>
+        <button className="back-btn" onClick={() => {setPlaying(0)}}>BACK</button>
         <div className="grid-container">
             <div className="grid">
                 {grid.map((row, x) =>
@@ -57,7 +60,11 @@ function Play({playing, setPlaying}) {
                         const wire = path.some(p => p.x === x && p.y === y)
 
                         return(
-                            <div key={`${x}-${y}`} className={`cell ${cell} ${wire ? "wire" : ""}`} onClick={() => {handleClick(x, y)}}>
+                            <div 
+                                key={`${x}-${y}`} 
+                                className={`cell ${cell} ${wire ? "wire" : ""}`} 
+                                onClick={() => {handleClick(x, y)}}
+                            >
                             </div>
                         )
                     })
