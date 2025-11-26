@@ -1,3 +1,16 @@
+# These Instructions Are Important
+
+Once you arrive on the website, click the button that says "IN". 
+It will take you to the keyboard of the Framework, which you will then need to click.
+
+At the login page, click "Create Account" and put something in for your username and password. 
+Disclaimer: your username and password are able to be seen by anyone, so be mindful.
+Afterwards, you will need to refresh the page before logging in.
+
+The levels page shows the different levels (most of them are under construction), play levels 1 & 2 for now.
+Start at the green square, end at the red square.
+Draw a blue wire from start to end, going around the black square obstacles.
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
