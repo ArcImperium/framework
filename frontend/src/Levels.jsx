@@ -1,11 +1,15 @@
 import './Levels.css'
-import {useState} from "react"
+import {useState, useEffect} from "react"
 import {useParams} from "react-router-dom"
 import Play from './Play.jsx'
 import Construction from './assets/construction.png'
 
-function Levels({names, loggedIn, setLoggedIn}) {
+function Levels({names, setNames, loggedIn, setLoggedIn}) {
     const {id} = useParams()
+    
+    useEffect(() => {
+        setLoggedIn(id)
+    }, [id])
 
     const [lvlPg, setLvlPg] = useState(0)
 
@@ -77,7 +81,7 @@ function Levels({names, loggedIn, setLoggedIn}) {
             {(lvlPg < Math.floor(levels.length / 6)) && (<button className="next-pg r" onClick={() => {setLvlPg(prev => prev + 1)}}>→</button>)}
             {(lvlPg > 0) && (<button className="next-pg l" onClick={() => {setLvlPg(prev => prev - 1)}}>←</button>)}
         </>)}
-        {(playing > 0) && (<Play playing={playing} setPlaying={setPlaying}/>)}
+        {(playing > 0) && (<Play setNames={setNames} playing={playing} setPlaying={setPlaying} loggedIn={loggedIn}/>)}
         </>
     )
 }

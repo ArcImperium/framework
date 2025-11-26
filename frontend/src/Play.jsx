@@ -2,11 +2,18 @@ import './Play.css'
 import {useState, useEffect} from "react"
 import FrameworkTransparent from './assets/framework_laptop_transparent.png'
 
-function Play({playing, setPlaying}) {
+function Play({setNames, playing, setPlaying, loggedIn}) {
     const [grid, setGrid] = useState([])
     const [path, setPath] = useState([])
     const [wireStarted, setWireStarted] = useState(false)
 
+    const level0 = [
+        ["empty", "empty", "empty", "empty", "empty"],
+        ["empty", "empty", "empty", "empty", "empty"],
+        ["empty", "empty", "empty", "empty", "empty"],
+        ["empty", "empty", "empty", "empty", "empty"],
+        ["empty", "empty", "empty", "empty", "empty"]
+    ]
     const level1 = [
         ["start", "empty", "empty", "empty", "empty"],
         ["empty", "obstacle", "empty", "obstacle", "obstacle"],
@@ -14,10 +21,23 @@ function Play({playing, setPlaying}) {
         ["empty", "obstacle", "empty", "obstacle", "empty"],
         ["empty", "empty", "empty", "obstacle", "end"]
     ]
+    const level2 = [
+        ["empty", "empty", "obstacle", "obstacle", "empty"],
+        ["start", "obstacle", "empty", "empty", "empty"],
+        ["empty", "obstacle", "end", "obstacle", "empty"],
+        ["empty", "empty", "obstacle", "empty", "empty"],
+        ["obstacle", "empty", "empty", "empty", "obstacle"]
+    ]
 
     function getLevel() {
         if (playing === 1) {
             setGrid(level1)
+        }
+        else if (playing === 2) {
+            setGrid(level2)
+        }
+        else {
+            setGrid(level0)
         }
     }
 
@@ -45,8 +65,36 @@ function Play({playing, setPlaying}) {
         setPath(newPath)
 
         if (cell === "end") {
-
+            finishLevel()
+            setPath([])
+            setWireStarted(false)
         }
+    }
+
+    function finishLevel() {
+        fetch(`http://localhost:4000/names/${loggedIn}/level`, {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                lvlIndex: (playing - 1),
+                value: true
+            })
+        })
+        .then(res => res.json())
+        .then(updated => {
+            console.log("Level updated:", updated);
+
+            setNames(prevNames =>
+                prevNames.map(n => 
+                    n.id === loggedIn 
+                    ? {...n, lvl: updated.user.lvl} 
+                    : n
+                )
+            );
+
+            setPlaying(0);
+        })
+        .catch(err => console.error(err));
     }
 
     return(

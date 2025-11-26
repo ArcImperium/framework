@@ -40,4 +40,18 @@ router.delete('/names/:id', (req, res) => {
     res.status(200).json({ message: 'Name deleted successfully' })
 })
 
+router.patch('/names/:id/level', (req, res) => {
+    const names = JSON.parse(fs.readFileSync(nameFile, 'utf8'))
+    const id = req.params.id
+    const {lvlIndex, value} = req.body
+
+    const user = names.find(n => n.id === id)
+    if (!user) return res.status(404).json({ error: "User not found" })
+
+    user.lvl[lvlIndex] = value
+
+    fs.writeFileSync(nameFile, JSON.stringify(names, null, 2))
+    res.json({ message: "Level updated", user })
+})
+
 module.exports = router
