@@ -72,7 +72,7 @@ function Play({setNames, playing, setPlaying, loggedIn}) {
     }
 
     function finishLevel() {
-        fetch(`http://localhost:4000/names/${loggedIn}/level`, {
+        fetch(`https://framework-elyl.onrender.com/names/${loggedIn}/level`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({

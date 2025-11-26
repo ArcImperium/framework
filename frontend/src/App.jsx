@@ -12,7 +12,7 @@ function App() {
   const [errorMessage, setErrorMessage] = useState("")
 
   useEffect(() => {
-    fetch("http://localhost:4000/names")
+    fetch("https://framework-elyl.onrender.com/names")
       .then(res => res.json())
       .then(data => setNames(data))
   }, [])
