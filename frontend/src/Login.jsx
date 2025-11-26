@@ -33,7 +33,7 @@ function Login({names, setLoggedIn, throwError}) {
         const existUser = names.some(n => n.user === user)
 
         if (!existUser) {
-            const res = await fetch("http://localhost:4000/names", {
+            const res = await fetch("https://framework-elyl.onrender.com/names", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({
