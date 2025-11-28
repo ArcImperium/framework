@@ -7,6 +7,10 @@ At the login page, click "Create Account" and put something in for your username
 Disclaimer: your username and password are able to be seen by anyone, so be mindful.
 Afterwards, you will need to refresh the page before logging in.
 
+If the login is not working, there are a variety of possible issues.
+First, make sure that you refreshed the page after creating your account.
+Second, you can visit https://framework-elyl.onrender.com/names to ensure that the backend is not asleep (because Render does that).
+
 The levels page shows the different levels (most of them are under construction), play levels 1 & 2 for now.
 Start at the green square, end at the red square.
 Draw a blue wire from start to end, going around the black square obstacles.
